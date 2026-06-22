@@ -45,8 +45,8 @@ const props = defineProps({
   }
 });
 
-// Detectar variables de entorno de Vite
-const adsenseClient = ref(import.meta.env.VITE_ADSENSE_CLIENT || '');
+// Detectar variables de entorno de Vite o usar fallback en producción
+const adsenseClient = ref(import.meta.env.VITE_ADSENSE_CLIENT || (import.meta.env.PROD ? 'ca-pub-6156944486787742' : ''));
 
 const adSlot = computed(() => {
   if (props.type === 'top') return import.meta.env.VITE_ADSENSE_SLOT_TOP || '';
