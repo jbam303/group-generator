@@ -102,20 +102,8 @@ const typeClass = computed(() => {
   }
 });
 
-// Cargar script de AdSense dinámicamente si hay cliente configurado
-const loadAdSenseScript = () => {
-  if (window.adsbygoogleScriptLoaded) return;
-  const script = document.createElement('script');
-  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient.value}`;
-  script.async = true;
-  script.crossOrigin = 'anonymous';
-  document.head.appendChild(script);
-  window.adsbygoogleScriptLoaded = true;
-};
-
 onMounted(() => {
   if (adsenseClient.value && adSlot.value) {
-    loadAdSenseScript();
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
